@@ -2,6 +2,7 @@ package com.example.projet_andro_fsi;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -51,6 +52,58 @@ public class UserDataSource {
         valeur.put("sujMemoire", user.getSujMemoire());
         valeur.put("dateBil2", user.getDateBil2());
         db.insert(MySQLiteHelper.TABLE_COMMENTS, null, valeur);
+    }
+
+    public User getUser() {
+        User user = null;
+        Cursor cursor = db.query(true, MySQLiteHelper.TABLE_COMMENTS,
+                new String[]{
+                        "id", "nomUti", "prenomUti", "telUti", "adresseUti", "mailUti",
+                        "nomMA", "prenomMA", "telMA", "mailMA",
+                        "nomEnt", "adresseEnt", "telEnt", "mailEnt",
+                        "libBil1", "notBil1", "remarqueBil1", "noteEntBil1", "noteOralBil1", "dateBil1",
+                        "libBil2", "noteBil2", "noteOralBil2", "sujMemoire", "dateBil2"
+                },
+                null, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) { // Vérifie s'il y a un résultat
+            user = cursorToUser(cursor);
+        }
+
+        cursor.close();
+        return user;
+    }
+
+    public User cursorToUser(Cursor curseur) {
+        int id = curseur.getInt(0);
+        String nomUti = curseur.getString(1);
+        String prenomUti = curseur.getString(2);
+        String telUti = curseur.getString(3);
+        String adresseUti = curseur.getString(4);
+        String mailUti = curseur.getString(5);
+        String nomMA = curseur.getString(6);
+        String prenomMA = curseur.getString(7);
+        String telMA = curseur.getString(8);
+        String mailMA = curseur.getString(9);
+        String nomEnt = curseur.getString(10);
+        String adresseEnt = curseur.getString(11);
+        String telEnt = curseur.getString(12);
+        String mailEnt = curseur.getString(13);
+        String libBil1 = curseur.getString(14);
+        float notBil1 = curseur.getFloat(15);
+        String remarqueBil1 = curseur.getString(16);
+        float noteEntBil1 = curseur.getFloat(17);
+        float noteOralBil1 = curseur.getFloat(18);
+        String dateBil1 = curseur.getString(19);
+        String libBil2 = curseur.getString(20);
+        float noteBil2 = curseur.getFloat(21);
+        float noteOralBil2 = curseur.getFloat(22);
+        String sujMemoire = curseur.getString(23);
+        String dateBil2 = curseur.getString(24);
+
+        return new User(id, nomUti, prenomUti, telUti, adresseUti, mailUti, nomMA, prenomMA, telMA, mailMA,
+                nomEnt, adresseEnt, telEnt, mailEnt, libBil1, notBil1, remarqueBil1, noteEntBil1,
+                noteOralBil1, dateBil1, libBil2, noteBil2, noteOralBil2, sujMemoire, dateBil2);
     }
 
     public void clear(){
