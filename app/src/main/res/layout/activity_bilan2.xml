@@ -70,8 +70,9 @@
         android:layout_height="wrap_content"
         android:text="Oral"
         android:textColor="#203C25"
-        app:layout_constraintTop_toTopOf="@+id/textView13"
-        tools:layout_editor_absoluteX="281dp" />
+        app:layout_constraintEnd_toEndOf="@+id/view7"
+        app:layout_constraintStart_toStartOf="@+id/view7"
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
 
     <View
         android:id="@+id/view4"
@@ -105,7 +106,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewLibelleBil2" />
 
     <TextView
-        android:id="@+id/textViewBil1Ora2"
+        android:id="@+id/textViewNoteBil2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
@@ -117,7 +118,7 @@
         app:layout_constraintTop_toTopOf="@+id/view4" />
 
     <TextView
-        android:id="@+id/textViewBil1Ora3"
+        android:id="@+id/textViewBil2Ora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
