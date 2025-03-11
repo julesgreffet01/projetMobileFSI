@@ -67,10 +67,22 @@
         android:id="@+id/btnAccueilInfo"
         android:layout_width="150dp"
         android:layout_height="44dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="#203C25"
         android:text="Information"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAccueilNotes" />
+
+    <Button
+        android:id="@+id/btnDeco"
+        android:layout_width="150dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#203C25"
+        android:text="Deconnexion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAccueilInfo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
