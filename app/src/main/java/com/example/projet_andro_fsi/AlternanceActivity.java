@@ -1,6 +1,8 @@
 package com.example.projet_andro_fsi;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -41,6 +43,20 @@ public class AlternanceActivity extends AppCompatActivity {
 
         User user = dataSource.getUser();
 
+        textViewNomEnt.setText(user.getNomEnt());
+        textViewTelEnt.setText(user.getTelEnt());
+        textViewAdrEnt.setText(user.getAdresseEnt());
+        textViewMailEnt.setText(user.getMailEnt());
+        textViewNomPreMA.setText(user.getPrenomMA()+" "+user.getNomMA());
+        textViewTelMA.setText(user.getTelMA());
+        textViewMailMA.setText(user.getMailMA());
 
+        btnAccueilAlternance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AlternanceActivity.this, AccueilActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
