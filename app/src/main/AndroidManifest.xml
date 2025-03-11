@@ -28,6 +28,7 @@
         <activity android:name=".NotesActivity"></activity>
         <activity android:name=".Bilan1Activity"></activity>
         <activity android:name=".Bilan2Activity"></activity>
+        <activity android:name=".AlternanceActivity"></activity>
     </application>
 
 </manifest>

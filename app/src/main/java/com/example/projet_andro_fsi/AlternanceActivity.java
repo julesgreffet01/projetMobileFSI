@@ -47,7 +47,8 @@ public class AlternanceActivity extends AppCompatActivity {
         textViewTelEnt.setText(user.getTelEnt());
         textViewAdrEnt.setText(user.getAdresseEnt());
         textViewMailEnt.setText(user.getMailEnt());
-        textViewNomPreMA.setText(user.getPrenomMA()+" "+user.getNomMA());
+        String np = user.getPrenomMA()+" "+user.getNomMA();
+        textViewNomPreMA.setText(np);
         textViewTelMA.setText(user.getTelMA());
         textViewMailMA.setText(user.getMailMA());
 
