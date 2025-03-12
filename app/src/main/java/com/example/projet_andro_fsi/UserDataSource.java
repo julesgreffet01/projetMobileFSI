@@ -51,6 +51,8 @@ public class UserDataSource {
         valeur.put("noteOralBil2", user.getNoteOralBil2());
         valeur.put("sujMemoire", user.getSujMemoire());
         valeur.put("dateBil2", user.getDateBil2());
+        valeur.put("cp", user.getCpUti());
+        valeur.put("vil", user.getVilUti());
         db.insert(MySQLiteHelper.TABLE_COMMENTS, null, valeur);
     }
 
@@ -62,7 +64,7 @@ public class UserDataSource {
                         "nomMA", "prenomMA", "telMA", "mailMA",
                         "nomEnt", "adresseEnt", "telEnt", "mailEnt",
                         "libBil1", "notBil1", "remarqueBil1", "noteEntBil1", "noteOralBil1", "dateBil1",
-                        "libBil2", "noteBil2", "noteOralBil2", "sujMemoire", "dateBil2"
+                        "libBil2", "noteBil2", "noteOralBil2", "sujMemoire", "dateBil2", "cp", "vil"
                 },
                 null, null, null, null, null, null);
 
@@ -100,10 +102,23 @@ public class UserDataSource {
         float noteOralBil2 = curseur.getFloat(22);
         String sujMemoire = curseur.getString(23);
         String dateBil2 = curseur.getString(24);
+        String cp = curseur.getString(25);
+        String vil = curseur.getString(26);
 
         return new User(id, nomUti, prenomUti, telUti, adresseUti, mailUti, nomMA, prenomMA, telMA, mailMA,
                 nomEnt, adresseEnt, telEnt, mailEnt, libBil1, notBil1, remarqueBil1, noteEntBil1,
-                noteOralBil1, dateBil1, libBil2, noteBil2, noteOralBil2, sujMemoire, dateBil2);
+                noteOralBil1, dateBil1, libBil2, noteBil2, noteOralBil2, sujMemoire, dateBil2, cp, vil);
+    }
+
+    public void applicModif(String tel, String mail, String adr, String cp, String vil){
+        User user = getUser();
+        ContentValues valeurs = new ContentValues();
+        valeurs.put("telUti", tel);
+        valeurs.put("mailUti", mail);
+        valeurs.put("adresseUti", adr);
+        valeurs.put("cp", cp);
+        valeurs.put("vil", vil);
+        db.update(MySQLiteHelper.TABLE_COMMENTS, valeurs, "id = ?", new String[]{String.valueOf(user.getId())});
     }
 
     public void clear(){

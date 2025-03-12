@@ -29,6 +29,7 @@
         <activity android:name=".Bilan1Activity"></activity>
         <activity android:name=".Bilan2Activity"></activity>
         <activity android:name=".AlternanceActivity"></activity>
+        <activity android:name=".ModifActivity"></activity>
     </application>
 
 </manifest>

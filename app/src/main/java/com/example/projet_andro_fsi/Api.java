@@ -14,4 +14,15 @@ public interface Api {
             @Field("login") String login,
             @Field("mdp") String mdp
     );
+
+    @FormUrlEncoded
+    @POST("jules.php?modif")
+    Call<Void> modifUser(
+            @Field("tel") String tel,
+            @Field("mail") String mail,
+            @Field("adr") String adr,
+            @Field("cp") String cp,
+            @Field("vil") String vil,
+            @Field("id") int id
+    );
 }

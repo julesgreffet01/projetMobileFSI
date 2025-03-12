@@ -13,13 +13,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_COMMENTS = "User";
     private static final String DATABASE_NAME = "fsiMobile.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String DATABASE_CREATE = "CREATE TABLE IF NOT EXISTS " + TABLE_COMMENTS + "(id integer primary key, nomUti text, prenomUti text, telUti text, adresseUti text," +
             " mailUti text, nomMA text, prenomMA text, telMA text, mailMA text," +  //10
             " nomEnt text, adresseEnt text, telEnt text, mailEnt text, libBil1 text, " +
             "notBil1 text, remarqueBil1 text, noteEntBil1 integer, noteOralBil1 integer, dateBil1 text," +
-            " libBil2 text, noteBil2 integer, noteOralBil2 integer, sujMemoire text, dateBil2 integer);";
+            " libBil2 text, noteBil2 integer, noteOralBil2 integer, sujMemoire text, dateBil2 integer, cp text, vil text);";
 
     public MySQLiteHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

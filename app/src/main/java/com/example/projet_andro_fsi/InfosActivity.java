@@ -13,7 +13,7 @@ public class InfosActivity extends AppCompatActivity {
 
     private UserDataSource dataSource;
     private TextView textViewPrenom, textViewNom, textViewMail, textViewTel, textViewAdr;
-    private Button btnAlternanceInfos, btnAccueilInfos;
+    private Button btnAlternanceInfos, btnAccueilInfos, btnModif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class InfosActivity extends AppCompatActivity {
         textViewAdr = (TextView) findViewById(R.id.textViewAdr);
         btnAlternanceInfos = (Button) findViewById(R.id.btnAlternanceInfos);
         btnAccueilInfos = (Button) findViewById(R.id.btnAccueilInfos);
+        btnModif = (Button) findViewById(R.id.btnModif);
 
         User user = dataSource.getUser();
 
@@ -44,7 +45,7 @@ public class InfosActivity extends AppCompatActivity {
         textViewNom.setText(user.getNomUti());
         textViewMail.setText(user.getMailUti());
         textViewTel.setText(user.getTelUti());
-        textViewAdr.setText(user.getAdresseUti());
+        textViewAdr.setText(user.getAdresseUti() + " " + user.getVilUti() + " (" + user.getCpUti() + ")");
         if("pas de maitre d'apprentissage".equals(user.getNomMA()) && "pas d'entreprise".equals(user.getNomEnt())){
             btnAlternanceInfos.setVisibility(View.GONE);
         } else {
@@ -61,6 +62,13 @@ public class InfosActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(InfosActivity.this, AccueilActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnModif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InfosActivity.this, ModifActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,7 +1,5 @@
 package com.example.projet_andro_fsi;
 
-import java.util.Date;
-
 public class User {
     private int id;
     private String nomUti;
@@ -28,8 +26,10 @@ public class User {
     private float noteOralBil2;
     private String sujMemoire;
     private String dateBil2;
+    private String cpUti;
+    private String vilUti;
 
-    public User(int id, String nomUti, String prenomUti, String telUti, String adresseUti, String mailUti, String nomMA, String prenomMA, String telMA, String mailMA, String nomEnt, String adresseEnt, String telEnt, String mailEnt, String libBil1, float notBil1, String remarqueBil1, float noteEntBil1, float noteOralBil1, String dateBil1, String libBil2, float noteBil2, float noteOralBil2, String sujMemoire, String dateBil2) {
+    public User(int id, String nomUti, String prenomUti, String telUti, String adresseUti, String mailUti, String nomMA, String prenomMA, String telMA, String mailMA, String nomEnt, String adresseEnt, String telEnt, String mailEnt, String libBil1, float notBil1, String remarqueBil1, float noteEntBil1, float noteOralBil1, String dateBil1, String libBil2, float noteBil2, float noteOralBil2, String sujMemoire, String dateBil2, String cpUti, String vilUti) {
         this.id = id;
         this.nomUti = nomUti;
         this.prenomUti = prenomUti;
@@ -55,6 +55,8 @@ public class User {
         this.noteOralBil2 = noteOralBil2;
         this.sujMemoire = sujMemoire;
         this.dateBil2 = dateBil2;
+        this.cpUti = cpUti;
+        this.vilUti = vilUti;
     }
 
     public int getId() {
@@ -155,5 +157,13 @@ public class User {
 
     public String getDateBil2() {
         return dateBil2;
+    }
+
+    public String getCpUti() {
+        return cpUti;
+    }
+
+    public String getVilUti() {
+        return vilUti;
     }
 }

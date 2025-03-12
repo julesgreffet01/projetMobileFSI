@@ -80,8 +80,8 @@
 
     <Button
         android:id="@+id/btnAlternanceInfos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="124dp"
+        android:layout_height="45dp"
         android:layout_marginTop="400dp"
         android:backgroundTint="#203C25"
         android:text="Alternance"
@@ -91,9 +91,9 @@
 
     <Button
         android:id="@+id/btnAccueilInfos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="480dp"
+        android:layout_width="124dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="470dp"
         android:text="Accueil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -153,4 +153,15 @@
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView22"
         app:layout_constraintTop_toTopOf="@+id/textView23" />
+
+    <Button
+        android:id="@+id/btnModif"
+        android:layout_width="124dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="330dp"
+        android:backgroundTint="#203C25"
+        android:text="Modifier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 </androidx.constraintlayout.widget.ConstraintLayout>
