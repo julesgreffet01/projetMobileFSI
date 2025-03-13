@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,10 +18,11 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String login, mdp, error;
+    private String login, mdp;
     private Button btnConnexion;
     private EditText editTextLog, editTextMdp;
     private UserDataSource dataSource;
+    private CheckBox CBConnected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +31,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initDB();
         initialisation();
+        verifConnexion();
     }
 
     private void initDB(){
         dataSource = new UserDataSource(this);
+    }
+
+    public void verifConnexion(){
         dataSource.open();
-        dataSource.clear();
+        User user = dataSource.getUser();
+        if(user != null){
+            if(dataSource.verifConnected()){
+                Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
+                startActivity(intent);
+            } else {
+                dataSource.clear();
+            }
+        }
+        dataSource.close();
     }
     private void initialisation(){
         editTextLog = (EditText) findViewById(R.id.editTextLogin);
         editTextMdp = (EditText) findViewById(R.id.editTextMdp);
         btnConnexion = (Button) findViewById(R.id.btnConnexion);
+        CBConnected = (CheckBox) findViewById(R.id.CBConnected);
 
         btnConnexion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +74,14 @@ public class MainActivity extends AppCompatActivity {
                                     User user = reponse.getUserData();
                                     if (user != null) {
                                         System.out.println(user.getLibBil1());
+                                        dataSource.open();
                                         dataSource.insert(user);
+                                        dataSource.close();
+                                        if(CBConnected.isChecked()){
+                                            dataSource.open();
+                                            dataSource.stayConnected();
+                                            dataSource.close();
+                                        }
                                         Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
                                         startActivity(intent);
                                     }

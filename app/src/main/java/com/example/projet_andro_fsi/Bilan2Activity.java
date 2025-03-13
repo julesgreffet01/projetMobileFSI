@@ -26,7 +26,6 @@ public class Bilan2Activity extends AppCompatActivity {
 
     private void initDB(){
         dataSource = new UserDataSource(this);
-        dataSource.open();
     }
 
     private void initialisation(){
@@ -37,7 +36,10 @@ public class Bilan2Activity extends AppCompatActivity {
         textViewBil2Ora = (TextView) findViewById(R.id.textViewBil2Ora);
         btnAccueilBil2 = (Button) findViewById(R.id.btnAccueilBil2);
 
+
+        dataSource.open();
         User user = dataSource.getUser();
+        dataSource.close();
 
         String date = user.getDateBil2();
         textViewBil2Date.setText(date);

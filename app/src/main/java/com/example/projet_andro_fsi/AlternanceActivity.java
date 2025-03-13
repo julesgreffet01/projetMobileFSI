@@ -28,7 +28,6 @@ public class AlternanceActivity extends AppCompatActivity {
 
     private void initDB(){
         dataSource = new UserDataSource(this);
-        dataSource.open();
     }
 
     private void initialisation(){
@@ -40,8 +39,9 @@ public class AlternanceActivity extends AppCompatActivity {
         textViewTelMA = (TextView) findViewById(R.id.textViewTelMA);
         textViewMailMA = (TextView) findViewById(R.id.textViewMailMA);
         btnAccueilAlternance = (Button) findViewById(R.id.btnAccueilAlternance);
-
+        dataSource.open();
         User user = dataSource.getUser();
+        dataSource.close();
 
         textViewNomEnt.setText(user.getNomEnt());
         textViewTelEnt.setText(user.getTelEnt());

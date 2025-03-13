@@ -32,7 +32,6 @@ public class ModifActivity extends AppCompatActivity {
 
     private void initDB(){
         dataSource = new UserDataSource(this);
-        dataSource.open();
     }
 
     private void initialisation(){
@@ -45,7 +44,10 @@ public class ModifActivity extends AppCompatActivity {
         btnModifOk = (Button) findViewById(R.id.btnModifOk);
         btnModifCancel = (Button) findViewById(R.id.btnModifCancel);
 
+        dataSource.open();
         User user = dataSource.getUser();
+        dataSource.close();
+
         editTextTel.setText(user.getTelUti());
         editTextMail.setText(user.getMailUti());
         editTextAdr.setText(user.getAdresseUti());
@@ -74,7 +76,9 @@ public class ModifActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
+                        dataSource.open();
                         dataSource.applicModif(tel, mail, adr, cp, vil);
+                        dataSource.close();
                         Intent intent = new Intent(ModifActivity.this, InfosActivity.class);
                         startActivity(intent);
                     }

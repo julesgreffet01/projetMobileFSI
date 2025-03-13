@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class NotesActivity extends AppCompatActivity {
 
-    private UserDataSource dataSource;
     private Button btnBil1, btnBil2, btnAccueil;
 
     @Override
@@ -18,13 +17,7 @@ public class NotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_notes);
-        initDB();
         initialisation();
-    }
-
-    private void initDB(){
-        dataSource = new UserDataSource(this);
-        dataSource.open();
     }
 
     private void initialisation(){

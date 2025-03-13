@@ -26,7 +26,6 @@ public class InfosActivity extends AppCompatActivity {
 
     private void initDB(){
         dataSource = new UserDataSource(this);
-        dataSource.open();
     }
 
     private void initialisation(){
@@ -39,7 +38,9 @@ public class InfosActivity extends AppCompatActivity {
         btnAccueilInfos = (Button) findViewById(R.id.btnAccueilInfos);
         btnModif = (Button) findViewById(R.id.btnModif);
 
+        dataSource.open();
         User user = dataSource.getUser();
+        dataSource.close();
 
         textViewPrenom.setText(user.getPrenomUti());
         textViewNom.setText(user.getNomUti());

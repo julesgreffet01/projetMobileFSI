@@ -93,4 +93,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
+    <CheckBox
+        android:id="@+id/CBConnected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Restez connecté"
+        app:layout_constraintStart_toStartOf="@+id/editTextMdp"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMdp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

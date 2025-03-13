@@ -121,6 +121,32 @@ public class UserDataSource {
         db.update(MySQLiteHelper.TABLE_COMMENTS, valeurs, "id = ?", new String[]{String.valueOf(user.getId())});
     }
 
+    public void stayConnected() {
+        User user = getUser();
+        if (user != null) {
+            ContentValues valeurs = new ContentValues();
+            valeurs.put("connected", 1);
+            db.update(MySQLiteHelper.TABLE_COMMENTS, valeurs, "id = ?", new String[]{String.valueOf(user.getId())});
+        }
+    }
+
+    public boolean verifConnected() {
+        Cursor cursor = db.query(true, MySQLiteHelper.TABLE_COMMENTS,
+                new String[]{"connected"},
+                null, null, null, null, null, null);
+
+        boolean isConnected = false;
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                isConnected = cursor.getInt(0) == 1;
+            }
+            cursor.close();
+        }
+
+        return isConnected;
+    }
+
     public void clear(){
         if(db != null){
             db.delete(MySQLiteHelper.TABLE_COMMENTS, null, null);

@@ -26,7 +26,6 @@ public class AccueilActivity extends AppCompatActivity {
     }
     private void initDB(){
         dataSource = new UserDataSource(this);
-        dataSource.open();
     }
 
     private void initialisation(){
@@ -34,7 +33,10 @@ public class AccueilActivity extends AppCompatActivity {
         btnInfos = (Button) findViewById(R.id.btnAccueilInfo);
         btnDeco = (Button) findViewById(R.id.btnDeco);
         textViewBonjour = (TextView) findViewById(R.id.textViewBonjour);
+
+        dataSource.open();
         User user = dataSource.getUser();
+        dataSource.close();
 
         bonjour = "Bonjour " + user.getPrenomUti();
         textViewBonjour.setText(bonjour);
@@ -42,6 +44,9 @@ public class AccueilActivity extends AppCompatActivity {
         btnDeco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dataSource.open();
+                dataSource.clear();
+                dataSource.close();
                 Intent intent = new Intent(AccueilActivity.this, MainActivity.class);
                 startActivity(intent);
             }

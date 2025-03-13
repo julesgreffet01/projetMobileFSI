@@ -28,7 +28,6 @@ public class Bilan1Activity extends AppCompatActivity {
 
     private void initDB(){
         dataSource = new UserDataSource(this);
-        dataSource.open();
     }
 
     private void initialisation(){
@@ -40,7 +39,9 @@ public class Bilan1Activity extends AppCompatActivity {
         textViewBil1Date = (TextView) findViewById(R.id.textViewBil1Date);
         btnAccueilBil1 = (Button) findViewById(R.id.btnAccueilBil1);
 
+        dataSource.open();
         User user = dataSource.getUser();
+        dataSource.close();
 
         lib = user.getLibBil1();
         textViewLibelleBil1.setText(lib);
