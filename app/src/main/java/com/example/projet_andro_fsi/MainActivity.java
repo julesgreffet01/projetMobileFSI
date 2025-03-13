@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
                             dataSource.insert(user);
                             dataSource.stayConnected();
                         }
-
-                        // Fermer la base de données seulement après les opérations
                         dataSource.close();
 
                         Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
@@ -66,17 +64,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onFailure(Call<User> call, Throwable t) {
                         Log.d("erreur", t.getMessage());
                         Toast.makeText(MainActivity.this, "Vérifiez votre connexion", Toast.LENGTH_SHORT).show();
-
-                        // Fermer la base ici aussi pour éviter une base ouverte
                         dataSource.close();
                     }
                 });
             } else {
                 dataSource.clear();
-                dataSource.close(); // Fermer ici si l'utilisateur n'est pas connecté
+                dataSource.close();
             }
         } else {
-            dataSource.close(); // Fermer ici si user == null
+            dataSource.close();
         }
     }
 
