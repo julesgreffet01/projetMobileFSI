@@ -25,4 +25,11 @@ public interface Api {
             @Field("vil") String vil,
             @Field("id") int id
     );
+
+    @FormUrlEncoded
+    @POST("jules.php?update")
+    Call<User> updateUser(
+            @Field("token") int token,
+            @Field("id") int id
+    );
 }

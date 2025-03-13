@@ -38,19 +38,48 @@ public class MainActivity extends AppCompatActivity {
         dataSource = new UserDataSource(this);
     }
 
-    public void verifConnexion(){
+    public void verifConnexion() {
         dataSource.open();
         User user = dataSource.getUser();
-        if(user != null){
-            if(dataSource.verifConnected()){
-                Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
-                startActivity(intent);
+
+        if (user != null) {
+            if (dataSource.verifConnected()) {
+                Call<User> call = RetroFitClientUser.getInstance().getMyApi().updateUser(14518487, user.getId());
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        User user = response.body();
+                        if (user != null) {
+                            dataSource.clear();
+                            dataSource.insert(user);
+                            dataSource.stayConnected();
+                        }
+
+                        // Fermer la base de données seulement après les opérations
+                        dataSource.close();
+
+                        Intent intent = new Intent(MainActivity.this, AccueilActivity.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Log.d("erreur", t.getMessage());
+                        Toast.makeText(MainActivity.this, "Vérifiez votre connexion", Toast.LENGTH_SHORT).show();
+
+                        // Fermer la base ici aussi pour éviter une base ouverte
+                        dataSource.close();
+                    }
+                });
             } else {
                 dataSource.clear();
+                dataSource.close(); // Fermer ici si l'utilisateur n'est pas connecté
             }
+        } else {
+            dataSource.close(); // Fermer ici si user == null
         }
-        dataSource.close();
     }
+
     private void initialisation(){
         editTextLog = (EditText) findViewById(R.id.editTextLogin);
         editTextMdp = (EditText) findViewById(R.id.editTextMdp);
@@ -98,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onFailure(Call<ReponseAPI> call, Throwable t) {
                             System.out.println("Échec de la requête !");
                             Log.d("erreur", t.getMessage());
+                            Toast.makeText(MainActivity.this, "verifier votre connexion", Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {

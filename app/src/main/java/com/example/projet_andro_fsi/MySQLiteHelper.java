@@ -22,7 +22,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             "nomEnt text, adresseEnt text, telEnt text, mailEnt text, libBil1 text, " +
             "notBil1 text, remarqueBil1 text, noteEntBil1 integer, noteOralBil1 integer, dateBil1 text, " +
             "libBil2 text, noteBil2 integer, noteOralBil2 integer, sujMemoire text, dateBil2 integer, " +
-            "cp text, vil text, connected integer DEFAULT 0);"; // Correction ici
+            "cp text, vil text, connected integer DEFAULT 0);";
 
     public MySQLiteHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
