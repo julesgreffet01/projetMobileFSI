@@ -17,15 +17,14 @@ public class ReponseAPI {
     }
 
     public User getUserData() {
-        if (data instanceof LinkedTreeMap) { // Retrofit stocke les objets JSON sous forme de LinkedTreeMap
+        if (data instanceof LinkedTreeMap) {
             Gson gson = new Gson();
-            String json = gson.toJson(data); // Convertit l'objet en String JSON
-            return gson.fromJson(json, User.class); // Convertit en User
+            String json = gson.toJson(data);
+            return gson.fromJson(json, User.class);
         }
-        return null; // Retourne null si "data" n'est pas un objet
+        return null;
     }
 
-    // ✅ Si "data" est une erreur sous forme de String, on la récupère
     public String getErrorMessage() {
         if (data instanceof String) {
             return (String) data;
