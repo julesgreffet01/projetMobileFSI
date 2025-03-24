@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     public void verifConnexion() {
         dataSource.open();
         User user = dataSource.getUser();
-        System.out.println(user);
         if (user != null) {
             if (dataSource.verifConnected()) {
                 Call<User> call = RetroFitClientUser.getInstance().getMyApi().updateUser(14518487, user.getId());
